@@ -130,3 +130,26 @@ function f1() {
 
 var result = f1();
 result(); // 999
+
+(function(){ /* code */ })();
+
+// 写法一
+var tmp = newData;
+processData(tmp);
+storeData(tmp);
+
+// 写法二
+(function (){
+  var tmp = newData;
+  processData(tmp);
+  storeData(tmp);
+}());
+//上面代码中，写法二比写法一更好，因为完全避免了污染全局变量。
+
+eval('var a = 1;'); //a 1
+
+(function f() {
+  'use strict';
+  eval('var foo = 123');
+  console.log(foo);  // ReferenceError: foo is not defined
+})();
